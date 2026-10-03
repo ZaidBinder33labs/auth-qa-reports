@@ -1,0 +1,131 @@
+{
+  "schema": "binder-auth-security-summary/1",
+  "runId": "qa-2026-10-03T09-57-28-695Z-adee07",
+  "generatedAt": "2026-10-03T09:58:03.808Z",
+  "overallStatus": "PASS",
+  "verificationLevels": {
+    "unit": {
+      "suites": [
+        "Adapter Contract",
+        "Auth Core (sessions)",
+        "Concurrency Engine",
+        "Credential Auth Adapter",
+        "Example Target (application-agnostic proof)",
+        "HTTP Transport",
+        "Isolation Engine",
+        "Lifecycle Engine",
+        "Redis Observer",
+        "State Diff",
+        "Target Descriptors",
+        "Tenant Core",
+        "Test Fixtures",
+        "Token Security"
+      ],
+      "passed": 14,
+      "failed": 0,
+      "blocked": 0,
+      "skipped": 0
+    },
+    "fixture": {
+      "suites": [
+        "Auth / Login",
+        "Concurrency Specs",
+        "Dynamic Multi-Tenant Auth",
+        "Framework Self-Test",
+        "Integration",
+        "Redis (mock adapter)",
+        "Security",
+        "Session Lifecycle",
+        "Tenant Isolation",
+        "Token Refresh"
+      ],
+      "passed": 10,
+      "failed": 0,
+      "blocked": 0,
+      "skipped": 0
+    },
+    "redis": {
+      "suites": [
+        "Real Redis Integration"
+      ],
+      "passed": 1,
+      "failed": 0,
+      "blocked": 0,
+      "skipped": 0
+    },
+    "reporting": {
+      "suites": [
+        "Reporting"
+      ],
+      "passed": 1,
+      "failed": 0,
+      "blocked": 0,
+      "skipped": 0
+    }
+  },
+  "isolationChecks": {
+    "executed": 18,
+    "passed": 18,
+    "failed": 0,
+    "blocked": 0,
+    "level": "fixture",
+    "note": "Fixture-level isolation evidence does not prove real backend tenant isolation."
+  },
+  "securityTestCoverage": {
+    "executed": 35,
+    "passed": 35,
+    "failed": 0
+  },
+  "findings": [
+    {
+      "id": "SEC-001",
+      "severity": "medium",
+      "component": "packages/adapters/src/binder-auth.js",
+      "testReference": "auth-adapter",
+      "title": "Session fingerprints are SHA-256 digests, not raw token substrings",
+      "status": "confirmed",
+      "evidence": "Evidence: safeToken/safeSession derive from @atf/token-security fingerprint.",
+      "remediation": "No action required while confirmed."
+    },
+    {
+      "id": "SEC-002",
+      "severity": "high",
+      "component": "tests/redis-integration",
+      "testReference": "redis-integration",
+      "title": "Real Redis never receives FLUSHDB or FLUSHALL; cleanup is namespace-scoped",
+      "status": "confirmed",
+      "evidence": "Evidence: cleanupNamespace uses SCAN with the run prefix; REDIS-14 asserts no flush command is issued.",
+      "remediation": "No action required while confirmed."
+    },
+    {
+      "id": "SEC-003",
+      "severity": "high",
+      "component": "tests/multitenant",
+      "testReference": "multitenant-auth",
+      "title": "Tenant session binding cannot be re-pointed at another tenant",
+      "status": "confirmed",
+      "evidence": "Evidence: TenantSession.assertTenant rejects cross-tenant use and detects an altered binding.",
+      "remediation": "No action required while confirmed."
+    },
+    {
+      "id": "SEC-004",
+      "severity": "info",
+      "component": "http-integration",
+      "testReference": "http-integration",
+      "title": "Real backend cross-tenant authorization enforcement",
+      "status": "not-verified",
+      "evidence": "Prerequisite: configured non-production Binder endpoint plus test tenants. Fixture tests do not prove backend enforcement.",
+      "remediation": "Provide a non-production endpoint and test tenants to verify."
+    }
+  ],
+  "limitations": [
+    "Mock/fixture suites validate framework logic only.",
+    "Real Redis evidence depends on an available Redis instance.",
+    "Real Binder HTTP evidence depends on a configured non-production endpoint and test tenants.",
+    "JWT claim decoding is not signature verification and is never used as an authorization decision."
+  ],
+  "prereqs": {
+    "redis-integration": "configured",
+    "binder-http-integration": "not requested for this run"
+  }
+}

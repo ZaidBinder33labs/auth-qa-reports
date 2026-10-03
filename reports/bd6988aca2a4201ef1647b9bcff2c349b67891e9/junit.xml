@@ -1,0 +1,1181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="binder-auth" tests="511" failures="0" skipped="0">
+  <testsuite name="Adapter Contract" tests="7" failures="0" skipped="0" time="0.000">
+    <properties>
+      <property name="category" value="adapter"/>
+      <property name="verification" value="unit"/>
+    </properties>
+    <testcase classname="Adapter Contract" name="contract: AuthAdapter — login/refresh/logout/getSessionState" time="0.003">
+    </testcase>
+    <testcase classname="Adapter Contract" name="contract: AuthAdapter — rotation enabled changes refresh token" time="0.001">
+    </testcase>
+    <testcase classname="Adapter Contract" name="contract: TenantAdapter — getTenant/getActor/listTenants" time="0.001">
+    </testcase>
+    <testcase classname="Adapter Contract" name="contract: RedisAdapter — inspect/snapshot/discoverKeys" time="0.004">
+    </testcase>
+    <testcase classname="Adapter Contract" name="contract: RedisAdapter — mutation blocked by default" time="0.001">
+    </testcase>
+    <testcase classname="Adapter Contract" name="contract: RedisAdapter — TTL validation" time="0.001">
+    </testcase>
+    <testcase classname="Adapter Contract" name="contract: RedisAdapter — type mismatch detection" time="0.000">
+    </testcase>
+  </testsuite>
+  <testsuite name="Auth / Login" tests="7" failures="0" skipped="0" time="0.000">
+    <properties>
+      <property name="category" value="auth"/>
+      <property name="verification" value="fixture"/>
+    </properties>
+    <testcase classname="Auth / Login" name="login: valid login creates session and Redis state" time="0.006">
+    </testcase>
+    <testcase classname="Auth / Login" name="login: invalid password throws" time="0.001">
+    </testcase>
+    <testcase classname="Auth / Login" name="login: missing credentials throws" time="0.000">
+    </testcase>
+    <testcase classname="Auth / Login" name="login: access token usable after login" time="0.001">
+    </testcase>
+    <testcase classname="Auth / Login" name="login: refresh state created" time="0.001">
+    </testcase>
+    <testcase classname="Auth / Login" name="login: tenant association recorded on session" time="0.000">
+    </testcase>
+    <testcase classname="Auth / Login" name="login: expected TTL on session" time="0.000">
+    </testcase>
+  </testsuite>
+  <testsuite name="Auth Core (sessions)" tests="11" failures="0" skipped="0" time="0.000">
+    <properties>
+      <property name="category" value="session"/>
+      <property name="verification" value="unit"/>
+    </properties>
+    <testcase classname="Auth Core (sessions)" name="auth-core: login creates authenticated session" time="0.002">
+    </testcase>
+    <testcase classname="Auth Core (sessions)" name="auth-core: unauthenticated state before login" time="0.000">
+    </testcase>
+    <testcase classname="Auth Core (sessions)" name="auth-core: logout marks session logged-out" time="0.001">
+    </testcase>
+    <testcase classname="Auth Core (sessions)" name="auth-core: refresh renews access token" time="0.001">
+    </testcase>
+    <testcase classname="Auth Core (sessions)" name="auth-core: refresh with rotation invalidates old token" time="0.000">
+    </testcase>
+    <testcase classname="Auth Core (sessions)" name="auth-core: refresh on logged-out session throws" time="0.001">
+    </testcase>
+    <testcase classname="Auth Core (sessions)" name="auth-core: invalid login (missing credentials) throws" time="0.000">
+    </testcase>
+    <testcase classname="Auth Core (sessions)" name="auth-core: login without password is rejected by adapter" time="0.000">
+    </testcase>
+    <testcase classname="Auth Core (sessions)" name="auth-core: getRefreshTokenState reports presence" time="0.001">
+    </testcase>
+    <testcase classname="Auth Core (sessions)" name="auth-core: clearSession removes session" time="0.001">
+    </testcase>
+    <testcase classname="Auth Core (sessions)" name="auth-core: invalid session id rejected" time="0.000">
+    </testcase>
+  </testsuite>
+  <testsuite name="Concurrency Engine" tests="8" failures="0" skipped="0" time="0.000">
+    <properties>
+      <property name="category" value="concurrency"/>
+      <property name="verification" value="unit"/>
+    </properties>
+    <testcase classname="Concurrency Engine" name="concurrency: lock is acquired immediately when free" time="0.001">
+    </testcase>
+    <testcase classname="Concurrency Engine" name="concurrency: second owner waits for first" time="0.031">
+    </testcase>
+    <testcase classname="Concurrency Engine" name="concurrency: withLock releases on success and failure" time="0.001">
+    </testcase>
+    <testcase classname="Concurrency Engine" name="concurrency: parallelLimit respects concurrency" time="0.082">
+    </testcase>
+    <testcase classname="Concurrency Engine" name="concurrency: parallelLimit propagates errors" time="0.000">
+    </testcase>
+    <testcase classname="Concurrency Engine" name="concurrency: parallelLimit handles empty array" time="0.001">
+    </testcase>
+    <testcase classname="Concurrency Engine" name="concurrency: waitForRace resolves on predicate" time="0.021">
+    </testcase>
+    <testcase classname="Concurrency Engine" name="concurrency: waitForRace times out" time="0.101">
+    </testcase>
+  </testsuite>
+  <testsuite name="Concurrency Specs" tests="6" failures="0" skipped="0" time="0.000">
+    <properties>
+      <property name="category" value="concurrency"/>
+      <property name="verification" value="fixture"/>
+    </properties>
+    <testcase classname="Concurrency Specs" name="concurrency: 4 simultaneous refresh requests" time="5.012">
+    </testcase>
+    <testcase classname="Concurrency Specs" name="concurrency: 10 simultaneous refresh requests" time="10.009">
+    </testcase>
+    <testcase classname="Concurrency Specs" name="concurrency: shared lock prevents duplicate rotation" time="0.062">
+    </testcase>
+    <testcase classname="Concurrency Specs" name="concurrency: concurrent login produces distinct sessions" time="0.001">
+    </testcase>
+    <testcase classname="Concurrency Specs" name="concurrency: lock release on failure" time="0.001">
+    </testcase>
+    <testcase classname="Concurrency Specs" name="concurrency: lock timeout handling" time="0.051">
+    </testcase>
+  </testsuite>
+  <testsuite name="Credential Auth Adapter" tests="47" failures="0" skipped="0" time="0.000">
+    <properties>
+      <property name="category" value="auth"/>
+      <property name="verification" value="unit"/>
+    </properties>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: constructs with an explicit onboardingUrl" time="0.003">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: an explicit empty url falls back to the environment configuration" time="0.000">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: missing onboarding configuration is rejected with a coded error" time="0.001">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: is unavailable and refuses to build a client without a request context" time="0.000">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: is available once a request context is injected" time="0.000">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: generated session IDs satisfy the auth-core validator" time="0.001">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: login returns a session ID valid under auth-core validation" time="0.001">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: login posts LoginIn fields positionally, not wrapped in an options object" time="0.001">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: login sends no bearer token" time="0.001">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: login maps TokenOut into a session descriptor" time="0.001">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: login without refresh_token disables rotation" time="0.001">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: login without refresh_token keeps a zero expiry rather than inventing 3600" time="0.000">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: already-expired expires_at yields zero, not the 3600 fallback" time="0.000">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="readExpiresIn handles missing, malformed, zero and future values" time="0.000">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: missing credentials are rejected before any request" time="0.000">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: missing tenant or actor is rejected" time="0.000">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: a 422 login maps to INVALID_CREDENTIALS" time="0.000">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: a login response without access_token is malformed" time="0.000">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: a non-JSON login body is malformed" time="0.000">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: 429 login maps to RATE_LIMITED" time="0.000">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: a network failure maps to a transport code, not a credential error" time="0.000">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: errors never echo the request password" time="0.000">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: refresh posts an empty body, matching the RefreshIn contract" time="0.000">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: refresh detects rotation and reports the previous token" time="0.000">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: refresh keeps the existing token when the server returns none" time="0.000">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: refresh without a session is NOT_AUTHENTICATED" time="0.000">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: a 401 refresh maps to INVALID_TOKEN" time="0.000">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: a refresh response without access_token is malformed" time="0.000">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: logout sends no request body, per contract" time="0.000">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: logout on 204 reports the invalidated session" time="0.000">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: logout accepts sessionId as well as id" time="0.000">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: a failed logout is reported as failed, never as invalidated" time="0.000">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: logout without a token does not claim success" time="0.000">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: getSessionState GETs /me with no body" time="0.001">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: getSessionState maps MeOut including the newer fields" time="0.001">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: refreshTokenFingerprint is a hash and contains no token characters" time="0.000">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: getSessionState reports expired on 401 without throwing" time="0.000">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: a transport failure is distinguishable from an expired session" time="0.000">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: getSessionState without a token is not-found" time="0.000">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: getEffectiveAccess GETs /me/access and maps the array response" time="0.001">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: getEffectiveAccess rejects a non-array response" time="0.000">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: getEffectiveAccess on 401 raises INVALID_TOKEN" time="0.000">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: getEffectiveAccess requires an authenticated session" time="0.000">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: tokenTenant and tokenUser read unverified claims" time="0.000">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: claim extraction returns null for opaque or malformed tokens" time="0.000">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: safeToken and safeSession expose only a hash fingerprint" time="0.000">
+    </testcase>
+    <testcase classname="Credential Auth Adapter" name="CredentialAuthAdapter: safeToken handles missing tokens without throwing" time="0.000">
+    </testcase>
+  </testsuite>
+  <testsuite name="Dynamic Multi-Tenant Auth" tests="47" failures="0" skipped="0" time="0.000">
+    <properties>
+      <property name="category" value="multi-tenant"/>
+      <property name="verification" value="fixture"/>
+    </properties>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="MT-01 valid login for tenant A" time="0.002">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="MT-02 valid login for tenant B" time="0.000">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="MT-03 missing tenant configuration is rejected with a coded error" time="0.001">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="MT-03b duplicate tenant aliases are rejected" time="0.000">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="MT-03c malformed BINDER_TENANTS JSON is rejected explicitly" time="0.000">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="MT-04 missing credentials are rejected" time="0.005">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="MT-05 invalid credentials surface a failure without creating a session" time="0.000">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="MT-06 API errors and network failures do not create sessions" time="0.000">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="MT-07 two tenants share one Auth implementation with no tenant-specific code" time="0.001">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="MT-07b an unknown tenant alias is refused rather than silently created" time="0.001">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="MT-08 separate sessions exist for different tenants" time="0.001">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="MT-09 session state is independent per tenant" time="0.001">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="MT-10 session expiry is represented and reported" time="0.000">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="MT-10b an invalid session ID is rejected by auth-core" time="0.000">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="MT-11 logout invalidates the intended session" time="0.000">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="MT-12 logging out tenant A does not invalidate tenant B" time="0.000">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="MT-13 parallel login and refresh operations complete without interference" time="0.001">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="MT-14 no session or token is overwritten across tenants" time="0.000">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="MT-15 cleanup removes sessions after successful operations" time="0.000">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="MT-15b cleanup after a failed operation still leaves no tracked sessions" time="0.000">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="MT-16 authorized access within the correct tenant succeeds" time="0.000">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="MT-17 tenant A cannot use its session for tenant B by changing the tenant id" time="0.000">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="MT-17b a session whose tenant binding was altered is detected" time="0.000">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="MT-18 missing tenant context is handled as an explicit error" time="0.000">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="MT-19 expired authentication is rejected" time="0.001">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="MT-20 effective access is reported as unsupported when the adapter cannot answer" time="0.000">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="MT-20b effective access is surfaced when the adapter supports it" time="0.000">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="MT-21 unauthorized cross-tenant requests are refused by the framework" time="0.000">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="MT-22 concurrent operations for two tenants do not mix identities or sessions" time="0.000">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="MT-23 refresh failure keeps the session unauthenticated and preserves the old token" time="0.000">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="MT-24 logout failure is reported as a failure" time="0.000">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="MT-25 malformed API responses are rejected" time="0.000">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="MT-26 a missing request context is refused before any transport call" time="0.000">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="MT-27 missing API configuration is refused" time="0.000">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="MT-28 Redis connection failure is surfaced, not swallowed" time="0.000">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="MT-29 concurrent lifecycle failure and recovery converge on a usable session" time="0.000">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="MT-CFG tenant descriptions never contain credentials" time="0.000">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="MT-CFG HTTP readiness reports missing prerequisites instead of assuming success" time="0.000">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="MT-CFG multiple tenants may share one base URL" time="0.000">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="IFACE-01 two modules share one AuthService instance" time="0.002">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="IFACE-02 both modules operate under a tenant session obtained from the shared service" time="0.001">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="IFACE-03 neither module can act for another tenant, whatever it passes in" time="0.001">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="IFACE-04 modules share token lifecycle through the service, not their own copies" time="0.001">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="IFACE-05 a module can read effective access through the shared session handle" time="0.001">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="IFACE-06 logging out through the shared service invalidates every module session" time="0.001">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="IFACE-07 module source contains no authentication logic" time="0.000">
+    </testcase>
+    <testcase classname="Dynamic Multi-Tenant Auth" name="IFACE-08 the shared service is reusable from a single import path" time="0.000">
+    </testcase>
+  </testsuite>
+  <testsuite name="Example Target (application-agnostic proof)" tests="21" failures="0" skipped="0" time="0.000">
+    <properties>
+      <property name="category" value="auth"/>
+      <property name="verification" value="unit"/>
+    </properties>
+    <testcase classname="Example Target (application-agnostic proof)" name="EXM-01 the example descriptor differs from binder in every dimension that could hide an assumption" time="0.002">
+    </testcase>
+    <testcase classname="Example Target (application-agnostic proof)" name="EXM-02 the example descriptor declares no Binder path anywhere" time="0.000">
+    </testcase>
+    <testcase classname="Example Target (application-agnostic proof)" name="EXM-03 login posts the example credential field names to the example path" time="0.002">
+    </testcase>
+    <testcase classname="Example Target (application-agnostic proof)" name="EXM-04 login reads the example token, refresh and expiry field names" time="0.001">
+    </testcase>
+    <testcase classname="Example Target (application-agnostic proof)" name="EXM-05 the declared expiry format is authoritative and is never guessed" time="0.001">
+    </testcase>
+    <testcase classname="Example Target (application-agnostic proof)" name="EXM-06 rotation is off because the descriptor says so, even though a refresh token came back" time="0.000">
+    </testcase>
+    <testcase classname="Example Target (application-agnostic proof)" name="EXM-07 refresh sends the refresh token in the body, not relying on a cookie" time="0.001">
+    </testcase>
+    <testcase classname="Example Target (application-agnostic proof)" name="EXM-08 refresh on a body-token target fails clearly when the token is not sent back" time="0.002">
+    </testcase>
+    <testcase classname="Example Target (application-agnostic proof)" name="EXM-09 logout accepts 200, the status the descriptor declares, and not only 204" time="0.001">
+    </testcase>
+    <testcase classname="Example Target (application-agnostic proof)" name="EXM-10 logout still reports failure when the status is not the declared one" time="0.001">
+    </testcase>
+    <testcase classname="Example Target (application-agnostic proof)" name="EXM-11 session state reads the example profile field names onto the framework shape" time="0.001">
+    </testcase>
+    <testcase classname="Example Target (application-agnostic proof)" name="EXM-12 session state still reports expired on 401 without throwing" time="0.001">
+    </testcase>
+    <testcase classname="Example Target (application-agnostic proof)" name="EXM-13 effective access reads the example grant field names and stays strict about booleans" time="0.001">
+    </testcase>
+    <testcase classname="Example Target (application-agnostic proof)" name="EXM-14 JWT claim extraction follows the descriptor, not Binder claim names" time="0.001">
+    </testcase>
+    <testcase classname="Example Target (application-agnostic proof)" name="EXM-15 missing credentials are refused before any request, whatever the field names" time="0.000">
+    </testcase>
+    <testcase classname="Example Target (application-agnostic proof)" name="EXM-16 a full session lifecycle against one backend instance stays coherent" time="0.001">
+    </testcase>
+    <testcase classname="Example Target (application-agnostic proof)" name="EXM-17 the adapter maps a refusal status to the same code whatever the field names" time="0.001">
+    </testcase>
+    <testcase classname="Example Target (application-agnostic proof)" name="EXM-18 a 429 is retried by the transport and then succeeds, on the example paths too" time="10.503">
+    </testcase>
+    <testcase classname="Example Target (application-agnostic proof)" name="EXM-18 the example Redis prefixes are composed from the target and an environment" time="0.001">
+    </testcase>
+    <testcase classname="Example Target (application-agnostic proof)" name="EXM-19 describeTarget reports the example contract without a host or a credential" time="0.000">
+    </testcase>
+    <testcase classname="Example Target (application-agnostic proof)" name="EXM-20 the descriptor-driven transport reports status, and refusals become coded errors" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="Framework Self-Test" tests="11" failures="0" skipped="0" time="0.000">
+    <properties>
+      <property name="category" value="regression"/>
+      <property name="verification" value="fixture"/>
+    </properties>
+    <testcase classname="Framework Self-Test" name="selftest: adapters satisfy contracts" time="0.002">
+    </testcase>
+    <testcase classname="Framework Self-Test" name="selftest: login flow works end-to-end" time="0.001">
+    </testcase>
+    <testcase classname="Framework Self-Test" name="selftest: refresh + rotation" time="0.001">
+    </testcase>
+    <testcase classname="Framework Self-Test" name="selftest: snapshot + diff" time="0.002">
+    </testcase>
+    <testcase classname="Framework Self-Test" name="selftest: TTL validation" time="0.000">
+    </testcase>
+    <testcase classname="Framework Self-Test" name="selftest: tenant isolation" time="0.001">
+    </testcase>
+    <testcase classname="Framework Self-Test" name="selftest: cross-tenant contamination detected" time="0.001">
+    </testcase>
+    <testcase classname="Framework Self-Test" name="selftest: concurrency — 4 concurrent refreshes" time="0.001">
+    </testcase>
+    <testcase classname="Framework Self-Test" name="selftest: redaction — raw token never in evidence" time="0.001">
+    </testcase>
+    <testcase classname="Framework Self-Test" name="selftest: cleanup — only test-owned resources are tracked" time="0.000">
+    </testcase>
+    <testcase classname="Framework Self-Test" name="selftest: session isolation — logout A leaves B valid" time="0.000">
+    </testcase>
+  </testsuite>
+  <testsuite name="HTTP Transport" tests="34" failures="0" skipped="0" time="0.000">
+    <properties>
+      <property name="category" value="adapter"/>
+      <property name="verification" value="unit"/>
+    </properties>
+    <testcase classname="HTTP Transport" name="HTP-01 requires a request context that exposes fetch" time="0.002">
+    </testcase>
+    <testcase classname="HTTP Transport" name="HTP-02 defaults the per-request timeout and exposes it to the context" time="0.001">
+    </testcase>
+    <testcase classname="HTTP Transport" name="HTP-03 refuses to resolve a relative path without a base URL" time="0.000">
+    </testcase>
+    <testcase classname="HTTP Transport" name="HTP-04 passes an absolute URL through unchanged" time="0.000">
+    </testcase>
+    <testcase classname="HTTP Transport" name="HTP-05 sends the bearer token on every request" time="0.000">
+    </testcase>
+    <testcase classname="HTTP Transport" name="HTP-06 sends no Authorization header when there is no token" time="0.000">
+    </testcase>
+    <testcase classname="HTTP Transport" name="HTP-07 a per-call token overrides the transport token and null suppresses the header" time="0.000">
+    </testcase>
+    <testcase classname="HTTP Transport" name="HTP-08 auth:false suppresses the header even with a token set" time="0.000">
+    </testcase>
+    <testcase classname="HTTP Transport" name="HTP-09 withToken produces an independent transport bound to the new token" time="0.000">
+    </testcase>
+    <testcase classname="HTTP Transport" name="HTP-10 post sends the JSON body positionally, the way a target adapter calls it" time="0.001">
+    </testcase>
+    <testcase classname="HTTP Transport" name="HTP-11 send with no json sends no body at all, not an empty object" time="0.000">
+    </testcase>
+    <testcase classname="HTTP Transport" name="HTP-12 an empty object body is sent as an object, which is distinct from no body" time="0.000">
+    </testcase>
+    <testcase classname="HTTP Transport" name="HTP-13 exposes status, headers, parsed body and raw text" time="0.000">
+    </testcase>
+    <testcase classname="HTTP Transport" name="HTP-14 a non-JSON payload leaves body null and keeps the raw text" time="0.001">
+    </testcase>
+    <testcase classname="HTTP Transport" name="HTP-15 an empty payload yields a null body and empty text" time="0.000">
+    </testcase>
+    <testcase classname="HTTP Transport" name="HTP-16 the response path is reported relative to the base URL" time="0.000">
+    </testcase>
+    <testcase classname="HTTP Transport" name="HTP-17 expect passes for an expected status and returns the response" time="0.000">
+    </testcase>
+    <testcase classname="HTTP Transport" name="HTP-18 expect throws HttpStatusError carrying the response" time="0.000">
+    </testcase>
+    <testcase classname="HTTP Transport" name="HTP-19 the expect message never contains the response body" time="0.000">
+    </testcase>
+    <testcase classname="HTTP Transport" name="HTP-20 retries a 429 and returns the eventual success" time="0.000">
+    </testcase>
+    <testcase classname="HTTP Transport" name="HTP-21 honours Retry-After in seconds" time="0.000">
+    </testcase>
+    <testcase classname="HTTP Transport" name="HTP-22 honours Retry-After given as an HTTP date" time="0.000">
+    </testcase>
+    <testcase classname="HTTP Transport" name="HTP-23 falls back to a default wait when Retry-After is absent" time="0.000">
+    </testcase>
+    <testcase classname="HTTP Transport" name="HTP-24 gives up after the retry budget and returns the 429 to the caller" time="0.000">
+    </testcase>
+    <testcase classname="HTTP Transport" name="HTP-25 retries:0 means a single attempt" time="0.000">
+    </testcase>
+    <testcase classname="HTTP Transport" name="HTP-26 a 429 is not retried when the caller passes its own budget" time="0.000">
+    </testcase>
+    <testcase classname="HTTP Transport" name="HTP-27 only 429 is retried; a 500 is returned immediately" time="0.000">
+    </testcase>
+    <testcase classname="HTTP Transport" name="HTP-28 parseRetryAfter covers seconds, dates and rubbish" time="0.000">
+    </testcase>
+    <testcase classname="HTTP Transport" name="HTP-29 a transport failure propagates; the transport does not invent a status" time="0.000">
+    </testcase>
+    <testcase classname="HTTP Transport" name="HTP-30 parseSetCookie reads the first name/value pair and ignores attributes" time="0.000">
+    </testcase>
+    <testcase classname="HTTP Transport" name="HTP-31 the cookie jar replays cookies on the next request and clears on dispose" time="0.097">
+    </testcase>
+    <testcase classname="HTTP Transport" name="HTP-32 a JSON request body is serialised and typed" time="0.033">
+    </testcase>
+    <testcase classname="HTTP Transport" name="HTP-33 a request with no body sends no body and no content type" time="0.014">
+    </testcase>
+    <testcase classname="HTTP Transport" name="HTP-34 a real 429 with Retry-After is retried end to end" time="0.521">
+    </testcase>
+  </testsuite>
+  <testsuite name="Integration" tests="3" failures="0" skipped="0" time="0.000">
+    <properties>
+      <property name="category" value="integration"/>
+      <property name="verification" value="fixture"/>
+    </properties>
+    <testcase classname="Integration" name="integration: full login + Redis snapshot + isolation + report" time="0.005">
+    </testcase>
+    <testcase classname="Integration" name="integration: cross-tenant contamination reported as FAIL" time="0.001">
+    </testcase>
+    <testcase classname="Integration" name="integration: refresh rotation + Redis state" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="Isolation Engine" tests="5" failures="0" skipped="0" time="0.000">
+    <properties>
+      <property name="category" value="isolation"/>
+      <property name="verification" value="unit"/>
+    </properties>
+    <testcase classname="Isolation Engine" name="isolation: tenant A unchanged when tenant B acts" time="0.002">
+    </testcase>
+    <testcase classname="Isolation Engine" name="isolation: unexpected cross-tenant state change detected" time="0.000">
+    </testcase>
+    <testcase classname="Isolation Engine" name="isolation: expected tenant change passes" time="0.000">
+    </testcase>
+    <testcase classname="Isolation Engine" name="isolation: session isolation — logout A leaves B valid" time="0.001">
+    </testcase>
+    <testcase classname="Isolation Engine" name="isolation: session isolation — A removed, B remains" time="0.000">
+    </testcase>
+  </testsuite>
+  <testsuite name="Lifecycle Engine" tests="7" failures="0" skipped="0" time="0.000">
+    <properties>
+      <property name="category" value="lifecycle"/>
+      <property name="verification" value="unit"/>
+    </properties>
+    <testcase classname="Lifecycle Engine" name="lifecycle: scenario captures BEFORE/AFTER and diff" time="0.003">
+    </testcase>
+    <testcase classname="Lifecycle Engine" name="lifecycle: scenario detects ADDED key" time="0.002">
+    </testcase>
+    <testcase classname="Lifecycle Engine" name="lifecycle: scenario detects MODIFIED key" time="0.000">
+    </testcase>
+    <testcase classname="Lifecycle Engine" name="lifecycle: scenario detects REMOVED key" time="0.001">
+    </testcase>
+    <testcase classname="Lifecycle Engine" name="lifecycle: scenario assertion failure marks FAIL" time="0.001">
+    </testcase>
+    <testcase classname="Lifecycle Engine" name="lifecycle: scenario tenant isolation PASS when other tenants unchanged" time="0.001">
+    </testcase>
+    <testcase classname="Lifecycle Engine" name="lifecycle: scenario tenant isolation FAIL when other tenant changes" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="Real Redis Integration" tests="16" failures="0" skipped="0" time="0.000">
+    <properties>
+      <property name="category" value="redis"/>
+      <property name="verification" value="redis"/>
+    </properties>
+    <testcase classname="Real Redis Integration" name="REDIS-ENV integration target is described without credentials" time="0.002">
+    </testcase>
+    <testcase classname="Real Redis Integration" name="REDIS-01 connection and availability are verified with a real PING" time="0.023">
+    </testcase>
+    <testcase classname="Real Redis Integration" name="REDIS-02 session record is created and read back" time="0.007">
+    </testcase>
+    <testcase classname="Real Redis Integration" name="REDIS-03 session update overwrites only its own fields" time="0.006">
+    </testcase>
+    <testcase classname="Real Redis Integration" name="REDIS-04 session expiry is enforced by a real TTL" time="1.406">
+    </testcase>
+    <testcase classname="Real Redis Integration" name="REDIS-05 session invalidation removes only the target key" time="0.005">
+    </testcase>
+    <testcase classname="Real Redis Integration" name="REDIS-06 tenant-scoped keys are named and looked up per tenant" time="0.005">
+    </testcase>
+    <testcase classname="Real Redis Integration" name="REDIS-07 writes for one tenant never appear under another tenant" time="0.005">
+    </testcase>
+    <testcase classname="Real Redis Integration" name="REDIS-08 concurrent session operations stay consistent" time="0.005">
+    </testcase>
+    <testcase classname="Real Redis Integration" name="REDIS-09 a refresh/logout race resolves without resurrecting a logged-out session" time="0.006">
+    </testcase>
+    <testcase classname="Real Redis Integration" name="REDIS-10 connection failure is reported, not silently ignored" time="0.004">
+    </testcase>
+    <testcase classname="Real Redis Integration" name="REDIS-11 a command timeout is bounded and observable" time="0.004">
+    </testcase>
+    <testcase classname="Real Redis Integration" name="REDIS-12 observer evidence is redacted and namespace-aware" time="0.001">
+    </testcase>
+    <testcase classname="Real Redis Integration" name="REDIS-13 cleanup removes every key this run created and nothing else" time="0.010">
+    </testcase>
+    <testcase classname="Real Redis Integration" name="REDIS-14 the harness never issues FLUSHDB or FLUSHALL" time="0.001">
+    </testcase>
+    <testcase classname="Real Redis Integration" name="REDIS-15 session fingerprints stored for evidence are one-way" time="0.008">
+    </testcase>
+  </testsuite>
+  <testsuite name="Redis (mock adapter)" tests="18" failures="0" skipped="0" time="0.000">
+    <properties>
+      <property name="category" value="redis"/>
+      <property name="verification" value="fixture"/>
+    </properties>
+    <testcase classname="Redis (mock adapter)" name="redis: key existence detection" time="0.002">
+    </testcase>
+    <testcase classname="Redis (mock adapter)" name="redis: key type detection" time="0.001">
+    </testcase>
+    <testcase classname="Redis (mock adapter)" name="redis: TTL observation" time="0.000">
+    </testcase>
+    <testcase classname="Redis (mock adapter)" name="redis: no-expiry detection" time="0.000">
+    </testcase>
+    <testcase classname="Redis (mock adapter)" name="redis: creation detection via diff" time="0.000">
+    </testcase>
+    <testcase classname="Redis (mock adapter)" name="redis: deletion detection via diff" time="0.000">
+    </testcase>
+    <testcase classname="Redis (mock adapter)" name="redis: modification detection via diff" time="0.000">
+    </testcase>
+    <testcase classname="Redis (mock adapter)" name="redis: fingerprinting hides raw values" time="0.000">
+    </testcase>
+    <testcase classname="Redis (mock adapter)" name="redis: tenant association via entry metadata" time="0.000">
+    </testcase>
+    <testcase classname="Redis (mock adapter)" name="redis: session association via key naming" time="0.001">
+    </testcase>
+    <testcase classname="Redis (mock adapter)" name="redis: snapshot consistency across multiple keys" time="0.000">
+    </testcase>
+    <testcase classname="Redis (mock adapter)" name="redis: adapter mutation blocked by default" time="0.001">
+    </testcase>
+    <testcase classname="Redis (mock adapter)" name="redis: adapter allows controlled mutation when enabled" time="0.000">
+    </testcase>
+    <testcase classname="Redis (mock adapter)" name="redis: pttl returns milliseconds" time="0.000">
+    </testcase>
+    <testcase classname="Redis (mock adapter)" name="redis: TTL decreases over time" time="0.050">
+    </testcase>
+    <testcase classname="Redis (mock adapter)" name="redis: validateTtl within tolerance passes" time="0.000">
+    </testcase>
+    <testcase classname="Redis (mock adapter)" name="redis: validateTtl outside tolerance fails" time="0.000">
+    </testcase>
+    <testcase classname="Redis (mock adapter)" name="redis: validateTtl no expiry fails with NO_EXPIRY" time="0.000">
+    </testcase>
+  </testsuite>
+  <testsuite name="Redis Observer" tests="127" failures="0" skipped="0" time="0.000">
+    <properties>
+      <property name="category" value="redis"/>
+      <property name="verification" value="unit"/>
+    </properties>
+    <testcase classname="Redis Observer" name="TC-REDIS-CONFIG-001: default REDIS_MODE is MOCK_REDIS when not supplied" time="0.002">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-CONFIG-002: REDIS_MODE=READ_ONLY is parsed correctly" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-CONFIG-003: REDIS_DB=0 is parsed as integer 0" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-CONFIG-004: valid DB indexes are accepted" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-CONFIG-005: invalid DB values are rejected" time="0.001">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-CONFIG-006: REDIS_TLS=true enables TLS" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-CONFIG-007: REDIS_TLS=false disables explicit TLS" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-CONFIG-008: default connect timeout is 5000 ms" time="0.001">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-CONFIG-009: default command timeout is 3000 ms" time="0.001">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-CONFIG-010: custom timeout values are parsed correctly" time="0.001">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SECRET-001: sanitized URL masks credentials" time="0.001">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SECRET-001b: cfg.url is available for connection when REDIS_URL is set" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SECRET-002: password never appears in logs/errors" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SECRET-003: username/password metadata exposes only hasUsername/hasPassword" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SECRET-004: sanitized URL does not contain the password" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SECRET-005: credential-bearing URL stays sanitized when a connection error occurs" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-001: PING is allowed in READ_ONLY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-002: SCAN is allowed in READ_ONLY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-003: EXISTS is allowed in READ_ONLY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-004: TYPE is allowed in READ_ONLY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-005: GET is allowed in READ_ONLY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-006: HGETALL is allowed in READ_ONLY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-007: LLEN is allowed in READ_ONLY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-008: SCARD is allowed in READ_ONLY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-009: ZCARD is allowed in READ_ONLY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-0010: TTL is allowed in READ_ONLY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-0011: PTTL is allowed in READ_ONLY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-012: SET is blocked in READ_ONLY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-013: SETEX is blocked in READ_ONLY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-014: DEL is blocked in READ_ONLY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-015: UNLINK is blocked in READ_ONLY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-016: EXPIRE is blocked in READ_ONLY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-017: PEXPIRE is blocked in READ_ONLY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-018: PERSIST is blocked in READ_ONLY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-019: RENAME is blocked in READ_ONLY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-020: RENAMENX is blocked in READ_ONLY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-021: FLUSHDB is blocked in READ_ONLY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-022: FLUSHALL is blocked in READ_ONLY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-023: EVAL is blocked in READ_ONLY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-024: EVALSHA is blocked in READ_ONLY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-025: SCRIPT is blocked in READ_ONLY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-026: HSET is blocked in READ_ONLY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-027: HDEL is blocked in READ_ONLY" time="0.001">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-028: RPUSH is blocked in READ_ONLY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-029: LPUSH is blocked in READ_ONLY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-030: LPOP is blocked in READ_ONLY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-031: RPOP is blocked in READ_ONLY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-032: SADD is blocked in READ_ONLY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-033: SREM is blocked in READ_ONLY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-034: ZADD is blocked in READ_ONLY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-035: ZREM is blocked in READ_ONLY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-036: KEYS is blocked in READ_ONLY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-037: RANDOMKEY is blocked in READ_ONLY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-038: MOVE is blocked in READ_ONLY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-039: OBJECT is blocked in READ_ONLY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-040: SORT is blocked in READ_ONLY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-SCAN-001: SCAN is allowed and not in BLOCKED_COMMANDS" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-CONNECTION-001: connection object does not connect automatically" time="0.001">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-CONNECTION-002: connect() invokes the client connection" time="0.001">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-CONNECTION-003: ping() returns successful PONG" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-CONNECTION-004: connection error is converted into a safe deterministic error" time="0.001">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-CONNECTION-005: connection timeout is handled" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-CONNECTION-006: disconnect() closes the client cleanly" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-CONNECTION-007: isConnected() reports correct state" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-CONNECTION-008: getClient() returns the underlying client only after initialization" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-CONNECTION-009: cfg.url is set when REDIS_URL env is provided" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="redis-observer: inspect string key" time="0.002">
+    </testcase>
+    <testcase classname="Redis Observer" name="redis-observer: inspect hash key hides sensitive fields" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="redis-observer: inspect list/set/zset cardinality" time="0.001">
+    </testcase>
+    <testcase classname="Redis Observer" name="redis-observer: inspect missing key returns null" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="redis-observer: snapshot discovers all keys" time="0.001">
+    </testcase>
+    <testcase classname="Redis Observer" name="redis-observer: discoverKeys with namespace prefix" time="0.001">
+    </testcase>
+    <testcase classname="Redis Observer" name="redis-observer: validateTtl within tolerance passes" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="redis-observer: validateTtl outside tolerance fails" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="redis-observer: validateTtl no expiry fails with NO_EXPIRY" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="redis-observer: pttl returns milliseconds" time="0.001">
+    </testcase>
+    <testcase classname="Redis Observer" name="redis-observer: TTL decreases over time" time="0.051">
+    </testcase>
+    <testcase classname="Redis Observer" name="redis-observer: missing key pttl is null" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-BLOCK-00: SET throws REDIS_MUTATION_BLOCKED and never reaches client" time="0.002">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-BLOCK-01: DEL throws REDIS_MUTATION_BLOCKED and never reaches client" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-BLOCK-02: UNLINK throws REDIS_MUTATION_BLOCKED and never reaches client" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-BLOCK-03: EXPIRE throws REDIS_MUTATION_BLOCKED and never reaches client" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-BLOCK-04: PEXPIRE throws REDIS_MUTATION_BLOCKED and never reaches client" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-BLOCK-05: PERSIST throws REDIS_MUTATION_BLOCKED and never reaches client" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-BLOCK-06: HSET throws REDIS_MUTATION_BLOCKED and never reaches client" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-BLOCK-07: HDEL throws REDIS_MUTATION_BLOCKED and never reaches client" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-BLOCK-08: RPUSH throws REDIS_MUTATION_BLOCKED and never reaches client" time="0.001">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-BLOCK-09: SADD throws REDIS_MUTATION_BLOCKED and never reaches client" time="0.001">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-BLOCK-10: ZADD throws REDIS_MUTATION_BLOCKED and never reaches client" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-BLOCK-11: FLUSHDB throws REDIS_MUTATION_BLOCKED and never reaches client" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-BLOCK-12: FLUSHALL throws REDIS_MUTATION_BLOCKED and never reaches client" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-BLOCK-13: EVAL throws REDIS_MUTATION_BLOCKED and never reaches client" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-BLOCK-14: EVALSHA throws REDIS_MUTATION_BLOCKED and never reaches client" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-BLOCK-15: KEYS throws REDIS_MUTATION_BLOCKED and never reaches client" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-BLOCK-16: SETEX throws REDIS_MUTATION_BLOCKED and never reaches client" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-BLOCK-17: RENAME throws REDIS_MUTATION_BLOCKED and never reaches client" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-BLOCK-18: RENAMENX throws REDIS_MUTATION_BLOCKED and never reaches client" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-BLOCK-19: LPOP throws REDIS_MUTATION_BLOCKED and never reaches client" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-BLOCK-20: RPOP throws REDIS_MUTATION_BLOCKED and never reaches client" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-BLOCK-21: SREM throws REDIS_MUTATION_BLOCKED and never reaches client" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-BLOCK-22: ZREM throws REDIS_MUTATION_BLOCKED and never reaches client" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-BLOCK-23: LPUSH throws REDIS_MUTATION_BLOCKED and never reaches client" time="0.003">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-BLOCK-24: SCRIPT throws REDIS_MUTATION_BLOCKED and never reaches client" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-BLOCK-25: RANDOMKEY throws REDIS_MUTATION_BLOCKED and never reaches client" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-BLOCK-26: MOVE throws REDIS_MUTATION_BLOCKED and never reaches client" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-BLOCK-27: OBJECT throws REDIS_MUTATION_BLOCKED and never reaches client" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-BLOCK-28: SORT throws REDIS_MUTATION_BLOCKED and never reaches client" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-ALLOW-00: PING is allowed and reaches client" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-ALLOW-01: SCAN is allowed and reaches client" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-ALLOW-02: EXISTS is allowed and reaches client" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-ALLOW-03: TYPE is allowed and reaches client" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-ALLOW-04: GET is allowed and reaches client" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-ALLOW-05: HGETALL is allowed and reaches client" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-ALLOW-06: LLEN is allowed and reaches client" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-ALLOW-07: SCARD is allowed and reaches client" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-ALLOW-08: ZCARD is allowed and reaches client" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-ALLOW-09: TTL is allowed and reaches client" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-ALLOW-10: PTTL is allowed and reaches client" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-SAFETY-SCAN-001: SCAN is allowed and not blocked in READ_ONLY mode" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-OBSERVER-001: existing MockRedisClient works unchanged" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-OBSERVER-002: existing RedisObserver constructor works unchanged" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-OBSERVER-003: discoverKeys() still works" time="0.001">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-OBSERVER-004: inspect() still works" time="0.001">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-OBSERVER-005: snapshot() still works" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-OBSERVER-006: TTL/PTTL still work" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-OBSERVER-007: validateTtl() still works" time="0.000">
+    </testcase>
+    <testcase classname="Redis Observer" name="TC-REDIS-OBSERVER-008: existing mutation blocking remains functional" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="Reporting" tests="25" failures="0" skipped="0" time="0.000">
+    <properties>
+      <property name="category" value="reporting"/>
+      <property name="verification" value="reporting"/>
+    </properties>
+    <testcase classname="Reporting" name="RPT-01 all report formats report identical totals" time="0.008">
+    </testcase>
+    <testcase classname="Reporting" name="RPT-02 pass, fail, skip and blocked are represented distinctly" time="0.001">
+    </testcase>
+    <testcase classname="Reporting" name="RPT-02b failure details stay useful in the report" time="0.001">
+    </testcase>
+    <testcase classname="Reporting" name="RPT-03 a required suite that did not run is never reported as passing" time="0.001">
+    </testcase>
+    <testcase classname="Reporting" name="RPT-03b a required suite present but entirely blocked yields BLOCKED, not PASS" time="0.000">
+    </testcase>
+    <testcase classname="Reporting" name="RPT-04 an empty run is never treated as successful verification" time="0.000">
+    </testcase>
+    <testcase classname="Reporting" name="RPT-05 secret-like values are redacted from report output" time="0.000">
+    </testcase>
+    <testcase classname="Reporting" name="RPT-05b secrets are removed from every generated artifact" time="0.002">
+    </testcase>
+    <testcase classname="Reporting" name="RPT-07 redactValue walks nested structures without losing shape" time="0.000">
+    </testcase>
+    <testcase classname="Reporting" name="RPT-07b circular structures do not crash the redactor" time="0.000">
+    </testcase>
+    <testcase classname="Reporting" name="RPT-06 malformed runner output is surfaced, not silently accepted" time="0.000">
+    </testcase>
+    <testcase classname="Reporting" name="RPT-06b a TAP stream truncated mid-diagnostics still yields a result" time="0.000">
+    </testcase>
+    <testcase classname="Reporting" name="RPT-08 HTML escapes untrusted test content" time="0.000">
+    </testcase>
+    <testcase classname="Reporting" name="RPT-08b XML output escapes untrusted content" time="0.000">
+    </testcase>
+    <testcase classname="Reporting" name="RPT-09 the dashboard loads no remote assets" time="0.001">
+    </testcase>
+    <testcase classname="Reporting" name="RPT-10 every artifact is produced even when tests failed" time="0.003">
+    </testcase>
+    <testcase classname="Reporting" name="RPT-10b the generator exits non-zero when verification is blocked" time="0.050">
+    </testcase>
+    <testcase classname="Reporting" name="RPT-11 no comparison is invented when no previous report exists" time="0.001">
+    </testcase>
+    <testcase classname="Reporting" name="RPT-11b a real previous report produces newly failing and resolved tests" time="0.001">
+    </testcase>
+    <testcase classname="Reporting" name="RPT-12 fixture verification is never labelled as real backend proof" time="0.002">
+    </testcase>
+    <testcase classname="Reporting" name="RPT-12b the security summary lists findings with a documented status" time="0.002">
+    </testcase>
+    <testcase classname="Reporting" name="RPT-13 every suite declares a verification level and required flag" time="0.001">
+    </testcase>
+    <testcase classname="Reporting" name="RPT-15 requested-but-blocked verification is never a clean PASS" time="0.012">
+    </testcase>
+    <testcase classname="Reporting" name="RPT-15b a failure outranks a blocked level" time="0.000">
+    </testcase>
+    <testcase classname="Reporting" name="RPT-16 the generator is runnable as a module and exposes a CLI entry point" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="Security" tests="9" failures="0" skipped="0" time="0.000">
+    <properties>
+      <property name="category" value="security"/>
+      <property name="verification" value="fixture"/>
+    </properties>
+    <testcase classname="Security" name="security: invalid refresh token rejected" time="0.005">
+    </testcase>
+    <testcase classname="Security" name="security: expired refresh token rejected" time="0.000">
+    </testcase>
+    <testcase classname="Security" name="security: malformed refresh token rejected" time="0.000">
+    </testcase>
+    <testcase classname="Security" name="security: token rotation makes old token invalid" time="0.001">
+    </testcase>
+    <testcase classname="Security" name="security: raw token never appears in evidence" time="0.001">
+    </testcase>
+    <testcase classname="Security" name="security: different tokens produce different fingerprints" time="0.000">
+    </testcase>
+    <testcase classname="Security" name="security: assertDifferentTokens throws on match" time="0.000">
+    </testcase>
+    <testcase classname="Security" name="security: cross-tenant authorization — tenant A cannot access tenant B resource" time="0.000">
+    </testcase>
+    <testcase classname="Security" name="security: redaction handles nested objects and arrays" time="0.000">
+    </testcase>
+  </testsuite>
+  <testsuite name="Session Lifecycle" tests="12" failures="0" skipped="0" time="0.000">
+    <properties>
+      <property name="category" value="session"/>
+      <property name="verification" value="fixture"/>
+    </properties>
+    <testcase classname="Session Lifecycle" name="logout: authenticated session becomes invalid" time="0.002">
+    </testcase>
+    <testcase classname="Session Lifecycle" name="logout: access token after logout is invalid" time="0.001">
+    </testcase>
+    <testcase classname="Session Lifecycle" name="logout: refresh token after logout is invalid" time="0.000">
+    </testcase>
+    <testcase classname="Session Lifecycle" name="logout: Redis session state removed after logout" time="0.002">
+    </testcase>
+    <testcase classname="Session Lifecycle" name="logout: repeated logout does not throw" time="0.000">
+    </testcase>
+    <testcase classname="Session Lifecycle" name="logout: logout without session is safe" time="0.000">
+    </testcase>
+    <testcase classname="Session Lifecycle" name="session: creation produces authenticated session" time="0.003">
+    </testcase>
+    <testcase classname="Session Lifecycle" name="session: multiple sessions for same actor" time="0.001">
+    </testcase>
+    <testcase classname="Session Lifecycle" name="session: session-specific logout leaves other sessions valid" time="0.001">
+    </testcase>
+    <testcase classname="Session Lifecycle" name="session: session isolation — logout A leaves B valid" time="0.000">
+    </testcase>
+    <testcase classname="Session Lifecycle" name="session: clearSession removes from registry" time="0.002">
+    </testcase>
+    <testcase classname="Session Lifecycle" name="session: invalid session id rejected" time="0.000">
+    </testcase>
+  </testsuite>
+  <testsuite name="State Diff" tests="11" failures="0" skipped="0" time="0.000">
+    <properties>
+      <property name="category" value="redis"/>
+      <property name="verification" value="unit"/>
+    </properties>
+    <testcase classname="State Diff" name="state-diff: UNCHANGED when nothing changes" time="0.002">
+    </testcase>
+    <testcase classname="State Diff" name="state-diff: ADDED detected" time="0.001">
+    </testcase>
+    <testcase classname="State Diff" name="state-diff: REMOVED detected" time="0.000">
+    </testcase>
+    <testcase classname="State Diff" name="state-diff: MODIFIED detected on value change" time="0.000">
+    </testcase>
+    <testcase classname="State Diff" name="state-diff: TTL_CHANGED detected" time="0.000">
+    </testcase>
+    <testcase classname="State Diff" name="state-diff: TYPE_CHANGED detected" time="0.000">
+    </testcase>
+    <testcase classname="State Diff" name="state-diff: TENANT_CHANGED detected" time="0.000">
+    </testcase>
+    <testcase classname="State Diff" name="state-diff: SESSION_CHANGED detected" time="0.000">
+    </testcase>
+    <testcase classname="State Diff" name="state-diff: nested field changes classified as MODIFIED" time="0.000">
+    </testcase>
+    <testcase classname="State Diff" name="state-diff: missing fields (empty before) handled" time="0.000">
+    </testcase>
+    <testcase classname="State Diff" name="state-diff: extra fields (empty after) handled" time="0.000">
+    </testcase>
+  </testsuite>
+  <testsuite name="Target Descriptors" tests="41" failures="0" skipped="0" time="0.000">
+    <properties>
+      <property name="category" value="adapter"/>
+      <property name="verification" value="unit"/>
+    </properties>
+    <testcase classname="Target Descriptors" name="CRED-01 the descriptor tree is found and is not empty" time="0.003">
+    </testcase>
+    <testcase classname="Target Descriptors" name="CRED-02 the walk finds the strings it is meant to inspect" time="0.003">
+    </testcase>
+    <testcase classname="Target Descriptors" name="CRED-03 no descriptor stores a credential under a credential-named key" time="0.001">
+    </testcase>
+    <testcase classname="Target Descriptors" name="CRED-04 every remote field name is a bare identifier, so it cannot be a secret" time="0.001">
+    </testcase>
+    <testcase classname="Target Descriptors" name="CRED-05 where a credential is named, the name is an environment variable" time="0.001">
+    </testcase>
+    <testcase classname="Target Descriptors" name="CRED-06 no descriptor key both looks like a credential and holds a value" time="0.001">
+    </testcase>
+    <testcase classname="Target Descriptors" name="CRED-06 no descriptor embeds a URL" time="0.001">
+    </testcase>
+    <testcase classname="Target Descriptors" name="CRED-07 no descriptor value resembles a token, key or other opaque secret" time="0.001">
+    </testcase>
+    <testcase classname="Target Descriptors" name="CRED-08 descriptor prose mentions no credential value" time="0.001">
+    </testcase>
+    <testcase classname="Target Descriptors" name="CRED-09 the loader has nowhere to put a credential that was injected anyway" time="0.003">
+    </testcase>
+    <testcase classname="Target Descriptors" name="CRED-10 a descriptor carrying a base URL is refused outright" time="0.001">
+    </testcase>
+    <testcase classname="Target Descriptors" name="TGT-01 a valid descriptor validates and freezes" time="0.003">
+    </testcase>
+    <testcase classname="Target Descriptors" name="TGT-02 displayName falls back to the name and description/version may be absent" time="0.000">
+    </testcase>
+    <testcase classname="Target Descriptors" name="TGT-03 expiresFormat defaults to datetime and tokenType is optional" time="0.000">
+    </testcase>
+    <testcase classname="Target Descriptors" name="TGT-04 logoutSuccessStatus defaults to 204" time="0.000">
+    </testcase>
+    <testcase classname="Target Descriptors" name="TGT-05 userFields is optional and defaults to empty" time="0.001">
+    </testcase>
+    <testcase classname="Target Descriptors" name="TGT-06 a non-object descriptor is refused" time="0.001">
+    </testcase>
+    <testcase classname="Target Descriptors" name="TGT-07 a missing name is refused with MISSING_FIELD" time="0.000">
+    </testcase>
+    <testcase classname="Target Descriptors" name="TGT-08 a missing or empty path is refused" time="0.001">
+    </testcase>
+    <testcase classname="Target Descriptors" name="TGT-09 a path that is not a path fragment is refused" time="0.000">
+    </testcase>
+    <testcase classname="Target Descriptors" name="TGT-10 a descriptor carrying a base URL is refused, so it cannot retarget a test" time="0.000">
+    </testcase>
+    <testcase classname="Target Descriptors" name="TGT-11 a non-boolean flag is refused rather than coerced" time="0.001">
+    </testcase>
+    <testcase classname="Target Descriptors" name="TGT-12 an out-of-range or non-numeric logout status is refused" time="0.001">
+    </testcase>
+    <testcase classname="Target Descriptors" name="TGT-13 a non-integer expiresFormat is refused" time="0.000">
+    </testcase>
+    <testcase classname="Target Descriptors" name="TGT-14 a missing token, refresh or expiry field name is refused" time="0.000">
+    </testcase>
+    <testcase classname="Target Descriptors" name="TGT-15 a field name that is not an identifier is refused" time="0.000">
+    </testcase>
+    <testcase classname="Target Descriptors" name="TGT-16 an incomplete field map is refused, naming the missing entry" time="0.000">
+    </testcase>
+    <testcase classname="Target Descriptors" name="TGT-17 an array where an object is required is refused" time="0.000">
+    </testcase>
+    <testcase classname="Target Descriptors" name="TGT-18 missing Redis prefixes are refused" time="0.000">
+    </testcase>
+    <testcase classname="Target Descriptors" name="TGT-19 an over-long value is refused" time="0.000">
+    </testcase>
+    <testcase classname="Target Descriptors" name="TGT-20 no error message ever contains the value that caused it" time="0.000">
+    </testcase>
+    <testcase classname="Target Descriptors" name="TGT-21 an unknown target name is refused without echoing the name" time="0.000">
+    </testcase>
+    <testcase classname="Target Descriptors" name="TGT-22 a target name that is not a safe identifier is refused" time="0.000">
+    </testcase>
+    <testcase classname="Target Descriptors" name="TGT-23 invalid JSON is refused as INVALID_JSON" time="0.000">
+    </testcase>
+    <testcase classname="Target Descriptors" name="TGT-24 the real descriptors on disk all validate" time="0.001">
+    </testcase>
+    <testcase classname="Target Descriptors" name="TGT-25 the targets directory is overridable so tests need not depend on the real layout" time="0.000">
+    </testcase>
+    <testcase classname="Target Descriptors" name="TGT-26 describeTarget reports paths and flags but no host and no credential" time="0.000">
+    </testcase>
+    <testcase classname="Target Descriptors" name="TGT-27 the target prefix alone is the key prefix with no environment applied" time="0.000">
+    </testcase>
+    <testcase classname="Target Descriptors" name="TGT-28 the environment namespace and deployment prefix come before the target prefix" time="0.000">
+    </testcase>
+    <testcase classname="Target Descriptors" name="TGT-29 empty and absent environment parts are skipped rather than leaving a stray separator" time="0.000">
+    </testcase>
+    <testcase classname="Target Descriptors" name="TGT-30 the composed key uses the target prefix, not a prefix copied into the environment" time="0.000">
+    </testcase>
+  </testsuite>
+  <testsuite name="Tenant Core" tests="12" failures="0" skipped="0" time="0.000">
+    <properties>
+      <property name="category" value="multi-tenant"/>
+      <property name="verification" value="unit"/>
+    </properties>
+    <testcase classname="Tenant Core" name="tenant-core: create and fetch tenant" time="0.001">
+    </testcase>
+    <testcase classname="Tenant Core" name="tenant-core: generated id matches format" time="0.000">
+    </testcase>
+    <testcase classname="Tenant Core" name="tenant-core: duplicate tenant throws" time="0.000">
+    </testcase>
+    <testcase classname="Tenant Core" name="tenant-core: missing tenant throws on require" time="0.000">
+    </testcase>
+    <testcase classname="Tenant Core" name="tenant-core: invalid tenant id format rejected" time="0.000">
+    </testcase>
+    <testcase classname="Tenant Core" name="tenant-core: actor belongs to tenant" time="0.000">
+    </testcase>
+    <testcase classname="Tenant Core" name="tenant-core: actor cannot belong to wrong tenant" time="0.000">
+    </testcase>
+    <testcase classname="Tenant Core" name="tenant-core: duplicate actor in same tenant throws" time="0.000">
+    </testcase>
+    <testcase classname="Tenant Core" name="tenant-core: invalid actor id rejected" time="0.000">
+    </testcase>
+    <testcase classname="Tenant Core" name="tenant-core: tenant context switching returns tenant" time="0.001">
+    </testcase>
+    <testcase classname="Tenant Core" name="tenant-core: remove tenant" time="0.000">
+    </testcase>
+    <testcase classname="Tenant Core" name="tenant-core: list tenants" time="0.000">
+    </testcase>
+  </testsuite>
+  <testsuite name="Tenant Isolation" tests="5" failures="0" skipped="0" time="0.000">
+    <properties>
+      <property name="category" value="isolation"/>
+      <property name="verification" value="fixture"/>
+    </properties>
+    <testcase classname="Tenant Isolation" name="tenancy: tenant A unchanged when tenant B acts" time="0.002">
+    </testcase>
+    <testcase classname="Tenant Isolation" name="tenancy: unexpected cross-tenant state change detected" time="0.000">
+    </testcase>
+    <testcase classname="Tenant Isolation" name="tenancy: expected tenant state change passes" time="0.000">
+    </testcase>
+    <testcase classname="Tenant Isolation" name="tenancy: session isolation — logout A leaves B valid" time="0.000">
+    </testcase>
+    <testcase classname="Tenant Isolation" name="tenancy: cross-tenant resource access via diff" time="0.000">
+    </testcase>
+  </testsuite>
+  <testsuite name="Test Fixtures" tests="4" failures="0" skipped="0" time="0.000">
+    <properties>
+      <property name="category" value="fixtures"/>
+      <property name="verification" value="unit"/>
+    </properties>
+    <testcase classname="Test Fixtures" name="fixtures: buildRegistry creates all tenants and actors" time="0.002">
+    </testcase>
+    <testcase classname="Test Fixtures" name="fixtures: actor belongs to correct tenant" time="0.000">
+    </testcase>
+    <testcase classname="Test Fixtures" name="fixtures: all actors present" time="0.000">
+    </testcase>
+    <testcase classname="Test Fixtures" name="fixtures: TENANTS and ACTORS are immutable" time="0.000">
+    </testcase>
+  </testsuite>
+  <testsuite name="Token Refresh" tests="7" failures="0" skipped="0" time="0.000">
+    <properties>
+      <property name="category" value="session"/>
+      <property name="verification" value="fixture"/>
+    </properties>
+    <testcase classname="Token Refresh" name="refresh: valid refresh renews access token" time="0.004">
+    </testcase>
+    <testcase classname="Token Refresh" name="refresh: rotation invalidates old token when enabled" time="0.001">
+    </testcase>
+    <testcase classname="Token Refresh" name="refresh: old refresh token after rotation" time="0.000">
+    </testcase>
+    <testcase classname="Token Refresh" name="refresh: invalid refresh token throws" time="0.001">
+    </testcase>
+    <testcase classname="Token Refresh" name="refresh: expired refresh token throws" time="0.000">
+    </testcase>
+    <testcase classname="Token Refresh" name="refresh: malformed refresh token throws" time="0.000">
+    </testcase>
+    <testcase classname="Token Refresh" name="refresh: session remains valid after refresh" time="0.000">
+    </testcase>
+  </testsuite>
+  <testsuite name="Token Security" tests="10" failures="0" skipped="0" time="0.000">
+    <properties>
+      <property name="category" value="security"/>
+      <property name="verification" value="unit"/>
+    </properties>
+    <testcase classname="Token Security" name="token-security: fingerprint is deterministic" time="0.001">
+    </testcase>
+    <testcase classname="Token Security" name="token-security: different tokens produce different fingerprints" time="0.000">
+    </testcase>
+    <testcase classname="Token Security" name="token-security: sameToken matches identical tokens" time="0.000">
+    </testcase>
+    <testcase classname="Token Security" name="token-security: raw token never appears in serialized evidence" time="0.001">
+    </testcase>
+    <testcase classname="Token Security" name="token-security: redaction handles nested objects and arrays" time="0.000">
+    </testcase>
+    <testcase classname="Token Security" name="token-security: malformed token handling does not throw" time="0.000">
+    </testcase>
+    <testcase classname="Token Security" name="token-security: JWT inspection extracts claims" time="0.000">
+    </testcase>
+    <testcase classname="Token Security" name="token-security: opaque token inspection" time="0.000">
+    </testcase>
+    <testcase classname="Token Security" name="token-security: assertDifferentTokens throws on match" time="0.001">
+    </testcase>
+    <testcase classname="Token Security" name="token-security: fingerprint rejects null" time="0.000">
+    </testcase>
+  </testsuite>
+</testsuites>
