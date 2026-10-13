@@ -11,11 +11,11 @@
 | Blocked | 0 |
 | Not run | 0 |
 | Suites executed | 26 of 26 |
-| Run ID | `qa-2026-10-10T04-22-57-960Z-913d1e` |
-| Started | 2026-10-10T04:22:57.960Z |
-| Finished | 2026-10-10T04:23:32.989Z |
-| Duration | 35029 ms |
-| Commit | f272dbf195ac409084301a30ae3682ace8e43a2b |
+| Run ID | `qa-2026-10-13T05-17-59-872Z-b5ef6e` |
+| Started | 2026-10-13T05:17:59.872Z |
+| Finished | 2026-10-13T05:18:34.880Z |
+| Duration | 35008 ms |
+| Commit | e5adfffbe93cc9c1a1c8d39363133ef7667e1312 |
 | Branch | main |
 | Environment | ci |
 
