@@ -1,7 +1,7 @@
 {
   "schema": "binder-auth-security-summary/1",
-  "runId": "qa-2026-11-23T14-17-38-401Z-e82e67",
-  "generatedAt": "2026-11-23T14:18:13.506Z",
+  "runId": "qa-2026-11-25T09-15-17-975Z-0d0ac1",
+  "generatedAt": "2026-11-25T09:15:53.210Z",
   "overallStatus": "PASS",
   "verificationLevels": {
     "unit": {
